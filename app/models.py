@@ -7,11 +7,11 @@ class Provincia(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
     pais = db.Column(db.String(10), nullable=False)
-    codigo = db.Column(db.String(2), nullable=False)
+    codigo = db.Column(db.String(2), nullable=False, unique=True)
     tiene_municipio = db.Column(db.Boolean, nullable=False, default=False)
     
     # Relación: Una Provincia tiene capitales 
-    capital = db.relationship('Capital', backref='Provincia', lazy=True)
+    capital = db.relationship('Capital', backref='Provincia', primaryjoin="Provincia.codigo==Capital.codigo_provincia", lazy=True)
     # Relación: Una Provincia tiene muchos municipios 
     municipio = db.relationship('Municipio', backref='Provincia', lazy=True)
 
@@ -29,7 +29,7 @@ class Capital(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
-    provincia_id = db.Column(db.Integer, db.ForeignKey('provincias.id'), nullable=False) 
+    codigo_provincia = db.Column(db.String(2), db.ForeignKey('provincias.codigo', name='codigo_provincia'), nullable=False) 
     latitud = db.Column(db.Numeric(9,6), nullable=True)
     longitud = db.Column(db.Numeric(9,6), nullable=True)
 
@@ -39,7 +39,7 @@ class Capital(db.Model):
         return {
             "id": self.id,
             "nombre": self.nombre,
-            "provincia_id": self.provincia_id,
+            "codigo_provincia": self.codigo_provincia,
             "nombre_provincia": self.Provincia.nombre,
             "latitud": self.latitud,
             "longitud": self.longitud
