@@ -21,4 +21,5 @@ def create_app():
     app.register_blueprint(municipio_bp)
     app.register_blueprint(capital_bp)
 
+
     return app
