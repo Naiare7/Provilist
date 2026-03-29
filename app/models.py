@@ -11,9 +11,10 @@ class Provincia(db.Model):
     tiene_municipio = db.Column(db.Boolean, nullable=False, default=False)
     
     # Relación: Una Provincia tiene capitales 
-    capital = db.relationship('Capital', backref='Provincia', primaryjoin="Provincia.codigo==Capital.codigo_provincia", lazy=True)
+    capital = db.relationship('Capital', backref='Provincia', primaryjoin="Provincia.codigo==Capital.codigo_provincia", lazy=True, cascade="all, delete")
+    
     # Relación: Una Provincia tiene muchos municipios 
-    municipio = db.relationship('Municipio', backref='Provincia', lazy=True)
+    municipio = db.relationship('Municipio', backref='Provincia', lazy=True, cascade="all, delete")
 
     def to_dict(self):
         return {
