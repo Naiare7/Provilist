@@ -15,7 +15,11 @@ def create_app():
     migrate.init_app(app, db) 
 
     # Importamos y registramos las rutas
-    from .routes import main
+    from .routes import main, provincia_bp, municipio_bp, capital_bp
     app.register_blueprint(main)
+    app.register_blueprint(provincia_bp)
+    app.register_blueprint(municipio_bp)
+    app.register_blueprint(capital_bp)
+
 
     return app

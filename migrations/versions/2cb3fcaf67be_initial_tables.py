@@ -1,8 +1,8 @@
 """Initial tables
 
-Revision ID: c8f3f1508665
+Revision ID: 2cb3fcaf67be
 Revises: 
-Create Date: 2026-03-25 13:58:28.292883
+Create Date: 2026-03-27 13:44:03.394439
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'c8f3f1508665'
+revision = '2cb3fcaf67be'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -24,12 +24,13 @@ def upgrade():
     sa.Column('pais', sa.String(length=10), nullable=False),
     sa.Column('codigo', sa.String(length=2), nullable=False),
     sa.Column('tiene_municipio', sa.Boolean(), nullable=False),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('codigo')
     )
     op.create_table('capitales',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('nombre', sa.String(length=100), nullable=False),
-    sa.Column('provincia_id', sa.Integer(), nullable=False),
+    sa.Column('provincia_id', sa.String(length=2), nullable=False),
     sa.Column('latitud', sa.Numeric(precision=9, scale=6), nullable=True),
     sa.Column('longitud', sa.Numeric(precision=9, scale=6), nullable=True),
     sa.ForeignKeyConstraint(['provincia_id'], ['provincias.id'], ),

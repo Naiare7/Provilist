@@ -30,7 +30,7 @@ class Capital(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
-    codigo_provincia = db.Column(db.String(2), db.ForeignKey('provincias.codigo', name='codigo_provincia'), nullable=False) 
+    provincia_id = db.Column(db.String(2), db.ForeignKey('provincias.id'), nullable=False) 
     latitud = db.Column(db.Numeric(9,6), nullable=True)
     longitud = db.Column(db.Numeric(9,6), nullable=True)
 
@@ -40,7 +40,7 @@ class Capital(db.Model):
         return {
             "id": self.id,
             "nombre": self.nombre,
-            "codigo_provincia": self.codigo_provincia,
+            "provincia_id": self.provincia_id,
             "nombre_provincia": self.Provincia.nombre,
             "latitud": self.latitud,
             "longitud": self.longitud
