@@ -16,3 +16,29 @@ def crear_municipio(data):
     db.session.add(nuevo_municipio)
     db.session.commit()
     return nuevo_municipio
+
+def actualizar_municipio(id, data):
+    municipio = Municipio.query.get(id)
+    if not municipio:
+        return None
+    municipio.nombre = data.get("nombre", municipio.nombre)
+    municipio.provincia_id = data.get("provincia_id", municipio.provincia_id)
+    municipio.codigo_postal = data.get("codigo_postal", municipio.codigo_postal)
+    municipio.poblacion = data.get("poblacion", municipio.poblacion)
+    municipio.area_km2 = data.get("area_km2", municipio.area_km2)
+    municipio.latitud = data.get("latitud", municipio.latitud)
+    municipio.longitud = data.get("longitud", municipio.longitud)
+    db.session.commit()
+    return municipio
+
+def eliminar_municipio(id):
+    municipio = Municipio.query.get(id)
+    if not municipio:
+        return False
+    db.session.delete(municipio)
+    db.session.commit()
+    return True
+
+def obtener_municipios():
+    municipios = Municipio.query.all()
+    return [m.to_dict() for m in municipios]

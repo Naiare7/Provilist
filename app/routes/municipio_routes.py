@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from ..services.municipio_service import crear_municipio
+from ..services.municipio_service import crear_municipio, actualizar_municipio, eliminar_municipio, obtener_municipios
 
 municipio_bp = Blueprint("municipios", __name__)
 
@@ -8,3 +8,24 @@ def crear_municipio_route():
     data = request.get_json()
     nuevo_municipio = crear_municipio(data)
     return jsonify(nuevo_municipio.to_dict()), 201
+
+
+@municipio_bp.route("/municipios/<int:id>", methods=["PUT"])
+def actualizar_municipio_route(id):
+    data = request.get_json()
+    municipio = actualizar_municipio(id, data)
+    if not municipio:
+        return jsonify({"error": "Municipio no encontrado"}), 404
+    return jsonify(municipio.to_dict()), 200
+
+@municipio_bp.route("/municipios/<int:id>", methods=["DELETE"])
+def eliminar_municipio_route(id):
+    eliminado = eliminar_municipio(id)
+    if not eliminado:
+        return jsonify({"error": "Municipio no encontrado"}), 404
+    return jsonify({"mensaje": "Municipio eliminado correctamente"}), 200
+
+@municipio_bp.route("/municipios", methods=["GET"])
+def obtener_municipios_route():
+    municipios = obtener_municipios()
+    return jsonify(municipios), 200

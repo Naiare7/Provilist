@@ -1,5 +1,6 @@
 from app.models import Provincia
 from app import db
+
 provincias_seed = [
     {"nombre": "Bizkaia", "pais": "Euskal Herria", "codigo": "BI", "tiene_municipio": True},
     {"nombre": "Gipuzkoa", "pais": "Euskal Herria", "codigo": "GI", "tiene_municipio": True},
