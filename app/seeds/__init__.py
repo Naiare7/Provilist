@@ -4,6 +4,4 @@ from .seeds_municipios import seeds_municipios
 
 def run_seeds():
     seeds_provincias()
-
-def run_seeds_municipios():
     seeds_municipios()    
