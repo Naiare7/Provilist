@@ -119,10 +119,16 @@ Aquí tienes un breve resumen de los endpoints disponibles en la API:
 - `DELETE /provincias/<id>` - Eliminar provincia.
 
 ### Capitales (`/capitales`)
+- `GET /capitales` - Listar todas las capitales.
 - `POST /capitales` - Crear nueva capital.
+- `PUT /capitales/<id>` - Actualizar datos de una capital.
+- `DELETE /capitales/<id>` - Eliminar capital.
 
 ### Municipios (`/municipios`)
+- `GET /municipios` - Listar todos los municipios.
 - `POST /municipios` - Crear un nuevo municipio.
+- `PUT /municipios/<id>` - Actualizar datos de un municipio.
+- `DELETE /municipios/<id>` - Eliminar municipio.
 
 ---
 
@@ -132,3 +138,10 @@ Dentro del directorio existen manuales más técnicos y detallados si necesitas 
 
 - `documentacion_tecnica_provilist.md`: Detalles de la DB, modelos, flujos completos y comandos técnicos.
 - `manual_creacion_provilist.md`: Guía de construcción desde cero y explicación paso a paso de las partes del código fuente.
+
+## Colaboradores
+
+- [Stiwar] (https://github.com/troyanojoi-sour)
+- [Kevin] (https://github.com/Kevingedev)
+- [Naia](https://github.com/Naiare7)
+
