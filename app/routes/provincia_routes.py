@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from ..services.provincia_service import crear_provincia, actualizar_provincia, eliminar_provincia, obtener_provincias
+from ..services.provincia_service import crear_provincia, actualizar_provincia, eliminar_provincia, obtener_provincias, obtener_provincia
 
 provincia_bp = Blueprint("provincias", __name__)
 
@@ -28,3 +28,10 @@ def eliminar_provincia_route(id):
 def obtener_provincias_route():
     provincias = obtener_provincias()
     return jsonify(provincias), 200
+
+@provincia_bp.route("/provincias/<int:id>", methods=["GET"])
+def obtener_provincia_route(id):
+    provincia = obtener_provincia(id)
+    if not provincia:
+        return jsonify({"error": "Provincia no encontrada"}), 404
+    return jsonify(provincia), 200
