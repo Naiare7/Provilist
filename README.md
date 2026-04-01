@@ -141,5 +141,7 @@ Dentro del directorio existen manuales más técnicos y detallados si necesitas 
 
 ## Colaboradores
 
+- [Stiwar] (https://github.com/troyanojoi-sour)
+- [Kevin] (https://github.com/Kevingedev)
 - [Naia](https://github.com/Naiare7)
 

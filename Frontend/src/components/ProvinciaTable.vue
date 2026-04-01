@@ -33,7 +33,7 @@ const formatNumber = (num: number) => {
         <span class="region-chip">REGIÓN NORTE</span>
         <h2 class="title-main">Provincias del <span class="title-accent">País Vasco</span></h2>
         <p class="subtitle-main">
-          Explora la demografía y los centros administrativos de las tres regiones históricas vascas.
+          Explora la demografía de las siete provincias vascas.
         </p>
       </div>
       <div class="header-right">

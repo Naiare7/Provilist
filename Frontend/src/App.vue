@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import Home from './components/Home.vue'
-import ProvincesTable from './components/ProvincesTable.vue'
-import CapitalsTable from './components/CapitalsTable.vue'
-import MunicipalitiesList from './components/MunicipalitiesList.vue'
+import ProvinciaTable from './components/ProvinciaTable.vue'
+import CapitalTable from './components/CapitalTable.vue'
+import MunicipioTable from './components/MunicipioTable.vue'
 
 type View = 'home' | 'provincias' | 'capitales' | 'municipios'
 const currentView = ref<View>('home')
@@ -15,9 +15,9 @@ const handleNavigate = (view: string) => {
 const currentComponent = computed(() => {
   switch(currentView.value) {
     case 'home': return Home
-    case 'provincias': return ProvincesTable
-    case 'capitales': return CapitalsTable
-    case 'municipios': return MunicipalitiesList
+    case 'provincias': return ProvinciaTable
+    case 'capitales': return CapitalTable
+    case 'municipios': return MunicipioTable
     default: return Home
   }
 })
@@ -27,7 +27,7 @@ const currentComponent = computed(() => {
   <header class="app-header glass-panel glass-header">
     <div class="header-content">
       <div class="brand">
-        <h1 class="brand-title" @click="handleNavigate('home')" style="cursor: pointer;">Provilist</h1>
+        <h1 class="brand-title" @click="handleNavigate('home')" style="cursor: pointer;">PROVILIST</h1>
         <p class="brand-tagline">Datos del País Vasco</p>
       </div>
       

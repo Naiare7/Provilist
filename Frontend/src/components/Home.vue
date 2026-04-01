@@ -13,7 +13,7 @@ const emit = defineEmits<{
         <span class="title-teal">Datos del País Vasco</span>
       </h1>
       <p class="hero-subtitle">
-        Gestiona la información administrativa de Euskadi de forma sencilla a través de nuestra interfaz cristalina.
+        Gestiona la información de Euskal Herria de forma sencilla a través de nuestra interfaz cristalina.
       </p>
     </div>
 
