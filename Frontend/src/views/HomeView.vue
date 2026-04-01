@@ -107,17 +107,17 @@ const emit = defineEmits<{
 }
 
 .title-dark {
-  color: #0F172A; /* Slate 900 */
+  color: #0F172A;
 }
 
 .title-teal {
-  color: #0D9488; /* Teal 600 */
+  color: #0D9488;
   margin-left: 12px;
 }
 
 .hero-subtitle {
   font-size: 20px;
-  color: #64748B; /* Slate 500 */
+  color: #64748B;
   max-width: 600px;
   line-height: 1.5;
   font-weight: 400;

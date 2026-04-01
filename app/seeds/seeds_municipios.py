@@ -2,7 +2,7 @@ from app.models import Municipio, Provincia
 from app import db  
 
 municipios_seed = [
-    {"nombre": "Abadiño", "provincia_id": "BI", "codigo_postal": "48220", "poblacion": 7708, "area_km2": 0.0, "latitud": 0.0, "longitud": 0.0, "created_at": "2026-03-30", "updated_at": "2026-03-30"},
+    {"nombre": "Abadiño", "provincia_id": "BI", "codigo_postal": "48220", "poblacion": 7708, "area_km2": 5, "latitud":5, "longitud": 5, "created_at": "2026-03-30", "updated_at": "2026-03-30"},
     {"nombre": "Abanto y Ciérvana-Abanto Zierbena", "provincia_id": "BI", "codigo_postal": "48500", "poblacion": 9254, "area_km2": 0.0, "latitud": 0.0, "longitud": 0.0, "created_at": "2026-03-30", "updated_at": "2026-03-30"},
     {"nombre": "Ajangiz", "provincia_id": "BI", "codigo_postal": "48320", "poblacion": 477, "area_km2": 0.0, "latitud": 0.0, "longitud": 0.0, "created_at": "2026-03-30", "updated_at": "2026-03-30"},
     {"nombre": "Alonsotegi", "provincia_id": "BI", "codigo_postal": "48810", "poblacion": 2950, "area_km2": 0.0, "latitud": 0.0, "longitud": 0.0, "created_at": "2026-03-30", "updated_at": "2026-03-30"},

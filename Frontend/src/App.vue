@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import Home from './components/Home.vue'
-import ProvinciaTable from './components/ProvinciaTable.vue'
-import CapitalTable from './components/CapitalTable.vue'
-import MunicipioTable from './components/MunicipioTable.vue'
+import HomeView from './views/HomeView.vue'
+import ProvinciaView from './views/ProvinciaView.vue'
+import CapitalView from './views/CapitalView.vue'
+import MunicipioView from './views/MunicipioView.vue'
 
 type View = 'home' | 'provincias' | 'capitales' | 'municipios'
 const currentView = ref<View>('home')
@@ -14,20 +14,16 @@ const handleNavigate = (view: string) => {
 
 const currentComponent = computed(() => {
   switch(currentView.value) {
-    case 'home': return Home
-    case 'provincias': return ProvinciaTable
-    case 'capitales': return CapitalTable
-    case 'municipios': return MunicipioTable
-    default: return Home
+    case 'home': return HomeView
+    case 'provincias': return ProvinciaView
+    case 'capitales': return CapitalView
+    case 'municipios': return MunicipioView
+    default: return HomeView
   }
 })
 </script>
 
 <template>
-  <h1>Provi List</h1>
-  <p>
-    La base de datos mas grande con la informacion exacta sobre Euskal Herria.!
-  </p>
   <header class="app-header glass-panel glass-header">
     <div class="header-content">
       <div class="brand">

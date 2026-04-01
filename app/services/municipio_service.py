@@ -39,7 +39,15 @@ def eliminar_municipio(id):
     db.session.commit()
     return True
 
-def obtener_municipios():
+def obtener_municipios(page=None, per_page=None):
+    if page and per_page:
+        pagination = Municipio.query.paginate(page=page, per_page=per_page, error_out=False)
+        return {
+            "items": [m.to_dict() for m in pagination.items],
+            "total": pagination.total,
+            "pages": pagination.pages,
+            "current_page": pagination.page
+        }
     municipios = Municipio.query.all()
     return [m.to_dict() for m in municipios]
 
