@@ -1,4 +1,4 @@
-from app.models import Municipio
+from app.models import Municipio, Provincia
 from app import db  
 
 municipios_seed = [
@@ -118,22 +118,25 @@ municipios_seed = [
 ]
 def seed_municipios():
     for data in municipios_seed:
-        # evitar duplicados
-        existe = Municipio.query.filter_by(codigo=data["codigo"]).first()
+        # Buscamos la provincia por su código (BI, GI, AL, etc.)
+        provincia = Provincia.query.filter_by(codigo=data["provincia_id"]).first()
+        if not provincia:
+            print(f"Error: Provincia con código {data['provincia_id']} no encontrada para el municipio {data['nombre']}")
+            continue
+
+        # Evitar duplicados por nombre y provincia
+        existe = Municipio.query.filter_by(nombre=data["nombre"], provincia_id=provincia.id).first()
         if existe:
             continue
 
         municipio = Municipio(
             nombre=data["nombre"],
-            provincia_id=data["provincia_id"],
-            codigo_postal=data["codigo_postal"],
+            provincia_id=provincia.id,
+            codigo_postal=int(data["codigo_postal"]),
             poblacion=data["poblacion"],
             area_km2=data["area_km2"],
             latitud=data["latitud"],
-            longitud=data["longitud"],
-            created_at=data["created_at"],
-            updated_at=data["updated_at"]
-            
+            longitud=data["longitud"]
         )
 
         db.session.add(municipio)
