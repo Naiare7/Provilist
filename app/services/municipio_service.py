@@ -42,3 +42,9 @@ def eliminar_municipio(id):
 def obtener_municipios():
     municipios = Municipio.query.all()
     return [m.to_dict() for m in municipios]
+
+def obtener_municipio(id):
+    municio = Municipio.query.get(id)
+    if not municio:
+        return False
+    return municio.to_dict()

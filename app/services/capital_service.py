@@ -32,3 +32,9 @@ def eliminar_capital(id):
 def obtener_capitales():
     capitales = Capital.query.all()
     return [p.to_dict() for p in capitales]
+
+def obtener_capital(id):
+    capital = Capital.query.get(id)
+    if not capital:
+        return False
+    return capital.to_dict()
