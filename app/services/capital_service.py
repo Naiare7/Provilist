@@ -4,7 +4,7 @@ from .. import db
 def crear_capital(data):
     nueva_capital = Capital(
         nombre=data["nombre"],
-        provincia_id=data["provincia_id"],
+        codigo_provincia=data["codigo_provincia"],
         latitud=data["latitud"],
         longitud=data["longitud"]
     )
@@ -17,9 +17,11 @@ def actualizar_capital(id, data):
     if not capital:
         return None
     capital.nombre = data.get("nombre", capital.nombre)
-    capital.codigo_provincia = data.get("codigo_provincia", capital.provincia_id)
+    capital.codigo_provincia = data.get("codigo_provincia", capital.codigo_provincia)
     capital.latitud = data.get ("latitud", capital.latitud)
     capital.longitud = data.get ("longitud", capital.longitud)
+    db.session.commit()
+    return capital
 
 def eliminar_capital(id):
     capital = Capital.query.get(id)

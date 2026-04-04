@@ -27,7 +27,9 @@ def eliminar_municipio_route(id):
 
 @municipio_bp.route("/municipios", methods=["GET"])
 def obtener_municipios_route():
-    municipios = obtener_municipios()
+    page = request.args.get('page', type=int)
+    per_page = request.args.get('per_page', type=int)
+    municipios = obtener_municipios(page=page, per_page=per_page)
     return jsonify(municipios), 200
 
 @municipio_bp.route("/municipios/<int:id>", methods=["GET"])

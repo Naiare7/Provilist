@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import type { CapitalPayload, Capital } from '@/api/interfaces';
+import type { CapitalPayload, Capital, Provincia } from '@/api/interfaces';
+import { obtenerProvincias } from '@/api/services/provinciaService';
 
 const props = defineProps<{
   initialData?: Capital | null;
@@ -9,6 +10,8 @@ const props = defineProps<{
 
 const emit = defineEmits(['submit', 'cancel']);
 
+const provincias = ref<Provincia[]>([]);
+
 const formData = ref<CapitalPayload>({
   nombre: '',
   codigo_provincia: '',
@@ -16,7 +19,13 @@ const formData = ref<CapitalPayload>({
   longitud: null
 });
 
-onMounted(() => {
+onMounted(async () => {
+  try {
+    provincias.value = await obtenerProvincias();
+  } catch (error) {
+    console.error('Error al cargar provincias:', error);
+  }
+
   if (props.initialData) {
     formData.value = {
       nombre: props.initialData.nombre,
@@ -47,17 +56,18 @@ const handleSubmit = () => {
     </div>
 
     <div class="form-group">
-      <label for="codigo_provincia">Código de Provincia</label>
-      <input 
+      <label for="codigo_provincia">Provincia</label>
+      <select 
         id="codigo_provincia" 
         v-model="formData.codigo_provincia" 
-        type="text" 
-        maxlength="2" 
-        placeholder="Ej. BI" 
         required 
         :disabled="loading"
-        style="text-transform: uppercase;"
-      />
+      >
+        <option value="" disabled>Selecciona una provincia</option>
+        <option v-for="provincia in provincias" :key="provincia.id" :value="provincia.codigo">
+          {{ provincia.nombre }} ({{ provincia.codigo }})
+        </option>
+      </select>
     </div>
 
     <div class="form-row">
@@ -103,8 +113,8 @@ const handleSubmit = () => {
 .form-row { display: flex; gap: 16px; }
 .flex-1 { flex: 1; }
 .form-group label { font-size: 14px; font-weight: 700; color: #475569; }
-input { padding: 12px 16px; border-radius: 12px; border: 1px solid #E2E8F0; background-color: #F8FAFC; width: 100%; transition: all 0.2s; }
-input:focus { outline: none; border-color: #00ABC5; box-shadow: 0 0 0 4px rgba(0, 171, 197, 0.1); }
+input, select { padding: 12px 16px; border-radius: 12px; border: 1px solid #E2E8F0; background-color: #F8FAFC; width: 100%; transition: all 0.2s; }
+input:focus, select:focus { outline: none; border-color: #00ABC5; box-shadow: 0 0 0 4px rgba(0, 171, 197, 0.1); }
 .form-actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 20px; }
 .btn { padding: 12px 24px; border-radius: 12px; font-weight: 700; cursor: pointer; transition: all 0.2s; border: none; }
 .btn-secondary { background-color: #F1F5F9; color: #475569; }

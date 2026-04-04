@@ -9,9 +9,7 @@ def crear_municipio(data):
         poblacion=data["poblacion"],
         area_km2=data["area_km2"],
         latitud=data["latitud"],
-        longitud=data["longitud"],
-        created_at=data["create_at"],
-        updated_at=data["updated_at"]
+        longitud=data["longitud"]
     )
     db.session.add(nuevo_municipio)
     db.session.commit()
