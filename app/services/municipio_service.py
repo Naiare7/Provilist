@@ -9,9 +9,7 @@ def crear_municipio(data):
         poblacion=data["poblacion"],
         area_km2=data["area_km2"],
         latitud=data["latitud"],
-        longitud=data["longitud"],
-        created_at=data["create_at"],
-        updated_at=data["updated_at"]
+        longitud=data["longitud"]
     )
     db.session.add(nuevo_municipio)
     db.session.commit()
@@ -39,6 +37,20 @@ def eliminar_municipio(id):
     db.session.commit()
     return True
 
-def obtener_municipios():
+def obtener_municipios(page=None, per_page=None):
+    if page and per_page:
+        pagination = Municipio.query.paginate(page=page, per_page=per_page, error_out=False)
+        return {
+            "items": [m.to_dict() for m in pagination.items],
+            "total": pagination.total,
+            "pages": pagination.pages,
+            "current_page": pagination.page
+        }
     municipios = Municipio.query.all()
     return [m.to_dict() for m in municipios]
+
+def obtener_municipio(id):
+    municio = Municipio.query.get(id)
+    if not municio:
+        return False
+    return municio.to_dict()

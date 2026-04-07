@@ -14,13 +14,13 @@ capitales_seed = [
 def seed_capitales():
     for data in capitales_seed:
         #evitar duplicados
-        existe = Capital.query.filter_by(codigo=data["codigo"]).first()
+        existe = Capital.query.filter_by(nombre=data["nombre"]).first()
         if existe:
             continue
 
         capital = Capital(
             nombre=data["nombre"],
-            codigo_de_provincia=data["codigo_de_provincia"],
+            codigo_provincia=data["codigo_de_provincia"],
             latitud=data["latitud"],
             longitud=data["longitud"]
         )

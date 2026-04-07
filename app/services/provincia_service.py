@@ -34,3 +34,9 @@ def eliminar_provincia(id):
 def obtener_provincias():
     provincias = Provincia.query.all()
     return [p.to_dict() for p in provincias]
+
+def obtener_provincia(id):
+    provincia = Provincia.query.get(id)
+    if not provincia:
+        return False
+    return provincia.to_dict()

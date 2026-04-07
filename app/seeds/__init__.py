@@ -1,9 +1,9 @@
-from .seeds_provincias import seeds_provincias
-from .seeds_municipios import seeds_municipios
+from .seeds_provincias import seed_provincias
+from .seeds_municipios import seed_municipios
+from .seeds_capitales import seed_capitales
 
-
+    
 def run_seeds():
-    seeds_provincias()
-
-def run_seeds_municipios():
-    seeds_municipios()    
+    seed_provincias()
+    seed_municipios()    
+    seed_capitales()
