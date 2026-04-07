@@ -1,8 +1,8 @@
-"""Initial tables
+"""Initial commit db
 
-Revision ID: 2cb3fcaf67be
+Revision ID: 13e164f8f151
 Revises: 
-Create Date: 2026-03-27 13:44:03.394439
+Create Date: 2026-04-07 21:32:10.347450
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '2cb3fcaf67be'
+revision = '13e164f8f151'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -30,10 +30,10 @@ def upgrade():
     op.create_table('capitales',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('nombre', sa.String(length=100), nullable=False),
-    sa.Column('provincia_id', sa.String(length=2), nullable=False),
+    sa.Column('codigo_provincia', sa.String(length=2), nullable=False),
     sa.Column('latitud', sa.Numeric(precision=9, scale=6), nullable=True),
     sa.Column('longitud', sa.Numeric(precision=9, scale=6), nullable=True),
-    sa.ForeignKeyConstraint(['provincia_id'], ['provincias.id'], ),
+    sa.ForeignKeyConstraint(['codigo_provincia'], ['provincias.codigo'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('municipios',
@@ -46,7 +46,7 @@ def upgrade():
     sa.Column('latitud', sa.Numeric(precision=9, scale=6), nullable=True),
     sa.Column('longitud', sa.Numeric(precision=9, scale=6), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=False),
-    sa.Column('updated_at', sa.DateTime(), nullable=True),
+    sa.Column('updated_at', sa.DateTime(), nullable=False),
     sa.ForeignKeyConstraint(['provincia_id'], ['provincias.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
