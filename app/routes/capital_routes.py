@@ -17,7 +17,7 @@ def actualizar_capital_route(id):
         return jsonify({"error": "Capital no encontrada"}), 404
     return jsonify(capital.to_dict()), 200
 
-@capital_bp.route("/capitales/>int:id>", methods= ["DELETE"])
+@capital_bp.route("/capitales/<int:id>", methods= ["DELETE"])
 def eliminar_capitales_route(id):
     eliminada = eliminar_capital(id)
     if not eliminada:
@@ -34,4 +34,4 @@ def obtener_capital_route(id):
     capital = obtener_capital(id)
     if not capital:
         return jsonify({"error": "Capital no encontrada"}), 404
-    return jsonify(capital.to_dict()), 200
+    return jsonify(capital), 200
