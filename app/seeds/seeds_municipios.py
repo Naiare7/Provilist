@@ -127,18 +127,29 @@ def seed_municipios():
         # Evitar duplicados por nombre y provincia
         existe = Municipio.query.filter_by(nombre=data["nombre"], provincia_id=provincia.id).first()
         if existe:
-            continue
+            existe.nombre = data["nombre"]
+            existe.provincia_id = data["provincia_id"]
+            existe.codigo_postal = data["codigo_postal"]
+            existe.poblacion = data["poblacion"]
+            existe.area_km2 = data["area_km2"]
+            existe.latitud = data["latitud"]
+            existe.longitud = data["longitud"]
+            existe.created_at = data["created_at"]
+            existe.updated_at = data["updated_at"]
+            
+            db.session.commit()
+        else:
 
-        municipio = Municipio(
-            nombre=data["nombre"],
-            provincia_id=provincia.id,
-            codigo_postal=int(data["codigo_postal"]),
-            poblacion=data["poblacion"],
-            area_km2=data["area_km2"],
-            latitud=data["latitud"],
-            longitud=data["longitud"]
-        )
+            municipio = Municipio(
+                nombre=data["nombre"],
+                provincia_id=provincia.id,
+                codigo_postal=int(data["codigo_postal"]),
+                poblacion=data["poblacion"],
+                area_km2=data["area_km2"],
+                latitud=data["latitud"],
+                longitud=data["longitud"]
+            )
 
-        db.session.add(municipio)
+            db.session.add(municipio)
 
     db.session.commit()

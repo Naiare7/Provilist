@@ -16,15 +16,20 @@ def seed_provincias():
         # evitar duplicados
         existe = Provincia.query.filter_by(codigo=data["codigo"]).first()
         if existe:
-            continue
+            existe.nombre = data["nombre"]
+            existe.pais = data["pais"]
+            existe.codigo = data["codigo"]
+            existe.tiene_municipio = data["tiene_municipio"]
 
-        provincia = Provincia(
-            nombre=data["nombre"],
-            pais=data["pais"],
-            codigo=data["codigo"],
-            tiene_municipio=data["tiene_municipio"]
-        )
+        else:
 
-        db.session.add(provincia)
+            provincia = Provincia(
+                nombre=data["nombre"],
+                pais=data["pais"],
+                codigo=data["codigo"],
+                tiene_municipio=data["tiene_municipio"]
+            )
+
+            db.session.add(provincia)
 
     db.session.commit()

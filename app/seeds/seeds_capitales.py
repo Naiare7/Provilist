@@ -16,15 +16,19 @@ def seed_capitales():
         #evitar duplicados
         existe = Capital.query.filter_by(nombre=data["nombre"]).first()
         if existe:
-            continue
-
-        capital = Capital(
+            existe.nombre = data["nombre"]
+            existe.codigo_provincia = data["codigo_de_provincia"]
+            existe.latitud = data["latitud"]
+            existe.longitud = data["longitud"]
+            # db.session.commit()
+        else:
+            capital = Capital(
             nombre=data["nombre"],
             codigo_provincia=data["codigo_de_provincia"],
             latitud=data["latitud"],
-            longitud=data["longitud"]
-        )
+            longitud=data["longitud"])
 
-        db.session.add(capital)
+            db.session.add(capital)
+        
 
     db.session.commit()
