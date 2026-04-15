@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from ..services.capital_service import crear_capital, actualizar_capital, eliminar_capital, obtener_capitales, obtener_capital
 
+# Un Blueprint es como un "mini-módulo" que agrupa rutas relacionadas (en este caso, todas las rutas de capitales: crear, leer, actualizar y eliminar).
 capital_bp = Blueprint("capitales", __name__)
 
 @capital_bp.route("/capitales", methods=["POST"])

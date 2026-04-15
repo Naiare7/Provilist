@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from ..services.provincia_service import crear_provincia, actualizar_provincia, eliminar_provincia, obtener_provincias, obtener_provincia
 
+# Un Blueprint es como un "mini-módulo" que agrupa rutas relacionadas (en este caso, todas las rutas de provincias: crear, leer, actualizar y eliminar).
 provincia_bp = Blueprint("provincias", __name__)
 
 @provincia_bp.route("/provincias", methods=["POST"])

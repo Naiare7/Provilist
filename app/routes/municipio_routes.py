@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from ..services.municipio_service import crear_municipio, actualizar_municipio, eliminar_municipio, obtener_municipios, obtener_municipio
 
+# Un Blueprint es como un "mini-módulo" que agrupa rutas relacionadas (en este caso, todas las rutas de municipios: crear, leer, actualizar y eliminar).
 municipio_bp = Blueprint("municipios", __name__)
 
 @municipio_bp.route("/municipios", methods=["POST"])
